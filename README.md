@@ -17,23 +17,133 @@ Accessible UI — designed for deaf and hard-of-hearing users with visual cues a
 Dark Mode — adaptive dark/light themes for user comfort.
 
 How to Set Up the Environment
+1. Install Unity Hub
 
-Make Sure you have Unity hub installed 
+Download and install Unity Hub from the official Unity website.
 
-Download the untiy version of 6000.060.f1 LTS
+2. Install Required Unity Version
 
-Enable AR Foundation
+Inside Unity Hub:
 
-Configure Build Settings
+Add Unity version 6000.0.60f1 LTS
 
-For Android:
+Make sure to include:
 
-Go to File → Build Settings → Android → Switch Platform
+Android Build Support
 
-Under Player Settings → XR Plug-in Management, enable ARCore
+iOS Build Support (optional)
 
-Set Minimum API Level to Android 8.0 (API 26) or higher
+Windows/Mac Build Support
 
-Connect your Android device and enable Developer Mode
+3. Enable AR Foundation
 
-Clone Repository 
+In Unity:
+
+Go to Window → Package Manager
+
+Switch to Unity Registry
+
+Install the following:
+
+AR Foundation
+
+ARCore XR Plugin (for Android)
+
+ARKit XR Plugin (only if building for iOS)
+
+Confirm AR Foundation packages are added to the project.
+
+4. Configure Build Settings
+For Android Builds:
+A. Switch Platform
+
+Go to File → Build Settings
+
+Select Android
+
+Click Switch Platform
+
+B. Configure XR Plug-in
+
+Go to Edit → Project Settings → XR Plug-in Management
+
+Under Android, enable:
+
+ARCore
+
+Ensure ARCore Required is checked (if your app must run only on AR-capable devices).
+
+C. Player Settings
+
+Go to Edit → Project Settings → Player
+
+Under Other Settings:
+
+Set Minimum API Level to Android 8.0 (API Level 26) or higher.
+
+Set Target API Level to Automatic (Highest Installed).
+
+Scripting Backend = IL2CPP
+
+Architecture = ARM64 (required by Google Play)
+
+D. Enable Permissions
+
+Unity automatically adds camera permission, but confirm:
+
+Player Settings → Publishing Settings → “Custom Main Manifest” OFF
+(Unless you manually modified manifest)
+
+E. Connect Device
+
+On your Android phone:
+
+Enable Developer Options
+
+Enable USB Debugging
+
+Install ADB drivers if needed
+
+Connect your device via USB
+
+5. Configure Project for AR
+
+Inside Unity:
+
+Create an AR Session game object
+
+Create an AR Session Origin game object
+(This contains the AR Camera)
+
+Verify:
+
+AR Camera uses AR Camera Background
+
+Tracking mode set to Position & Rotation
+
+6. Clone the Repository
+
+git clone https://github.com/OdinEM/traceAR.git
+
+
+Then open the project through Unity Hub.
+
+7. Import Assets
+
+Add your Image Targets
+
+Add your 3D Models, Quad Overlays, Materials, and UI Prefabs
+
+Verify that your reference images are added inside the XR → AR Tracked Image Manager
+
+8. Test the AR Scene
+
+Open your AR scene (e.g., CameraScene)
+
+Hit Build & Run
+
+Point your device at the image target
+
+Confirm initial material spawns correctly
+
+Add a proper .gitignore for Unity
